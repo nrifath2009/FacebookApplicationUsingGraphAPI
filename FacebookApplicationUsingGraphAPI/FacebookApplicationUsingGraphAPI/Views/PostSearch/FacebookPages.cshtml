@@ -1,0 +1,110 @@
+﻿@model FacebookApplicationUsingGraphAPI.Models.ManagePageByUser
+
+@{
+    ViewBag.Title = "FacebookPages";
+}
+
+<h2>Facebook Pages</h2><hr>
+@using (Html.BeginForm("FacebookPages", "PostSearch", FormMethod.Post))
+
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label>Page Name</label>
+        <select name="pageId"  id="pageId" class="form-control">
+            @foreach (var page in Model.pageList)
+            {
+
+                <option value="@page.id">@page.name</option>
+
+            }
+
+           
+        </select>
+    </div>
+    
+   <div class="form-group">
+        <input class="btn btn-success" type="submit" value="Search Posts">
+    </div>
+}
+
+@if (ViewBag.PageNameById != null)
+{
+    <h3>@ViewBag.PageNameById</h3>
+}
+@if (ViewBag.PageLikesById != null)
+{
+    <h3>Likes: @ViewBag.PageLikesById</h3>
+}
+
+
+@if (ViewBag.Error != null)
+{
+    <h3>@ViewBag.Error</h3>
+}
+
+@if (ViewBag.PostsList != null)
+{
+    <div id="postsList">
+        
+        @using (Html.BeginForm("GetPostDetails","PostSearch",FormMethod.Post))
+        {
+             @Html.AntiForgeryToken()
+            foreach (var post in ViewBag.PostsList)
+            {
+                if (post.message != null)
+                {
+                    <div class="jumbotron" id="single_post">
+                        <p>
+                            @post.message
+                        </p>
+
+                        
+                        <input type="submit" class="btn btn-primary" value="View Details">
+                        <input type="hidden" name="postId" value=@post.id>
+
+                    </div>
+                }
+
+
+            }
+        }
+        
+    
+
+    </div>
+}
+else{
+    <p>Sorry! There is no post found in this page!</p>
+}
+    
+
+
+@*<table class="table table-bordered table-striped">
+    <tr>
+        <th>Page ID</th>
+        <th>Page Title</th>
+        <th>Category</th>
+    </tr>
+    @foreach (var page in Model.pageList)
+    {
+        <tr><td>@page.id</td><td>@page.name</td><td>@page.category</td></tr>
+    }
+</table>*@
+
+
+<script type="text/javascript">
+
+    //function FillData(id) {
+    //    $("#postsList").load("/PostSearch/GetPage", { pageId: id });
+        
+    //}
+
+    //$(function() {
+    //    $("#selectedPage").change(function() {
+    //        var id = $("#selectedPage").val();
+    //        FillData(id);
+    //    });
+
+    //});
+</script>

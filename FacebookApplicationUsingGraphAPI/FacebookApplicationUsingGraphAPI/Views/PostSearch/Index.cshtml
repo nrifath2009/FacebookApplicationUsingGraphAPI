@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Post Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Post Search</h2><hr>
@@ -30,45 +31,60 @@
 
 
     <div id="pageDetails">
-        @for (var i = 0; i < 3; i++)
-        {
+       
             <h2>Post Title: </h2>
             <p></p>
-        }
+        
         
         
     </div>
+
+    <select id ="pageName">
+        <option value="">Dhaka</option>
+        <option value="">Rajshahi</option>
+        <option value="">Khulna</option>
+    </select>
 
 
 
 
     <script type="text/javascript">
 
-    function PostStatus() {
-        var postDate = $('#txtCreatedDate').val();
+        //$(function () {
+            
 
-        if (postDate != '') {
-            $.ajax({
-                url: 'https://graph.facebook.com/1502488506686496?fields=posts.limit(3){message}&access_token=CAACEdEose0cBAP42INUS4jXLrD2oVADFtGZAPFb9AUdZCK6vHX77580gWpAm2a0NI23xOZAcnOZC6KGZCZBaYyhXRKpzSAF44ZAnykgWFQaQaUTqSP22vV9VdqkyEgfr92mLK6ZBTwnT5BK3sNFEW7zxbRuOzgmj3rw4mEBQEzOYJtZBuE6sZAApHcZCEZBaaDqjIIgJJZClEZAZAd2tJcfV923Kx0tCrNGZCRQB40gZD',
-                type: 'GET',
-                data: {postDate: postDate},
-                success:function(data) {
-                    for(var i=0; i<3; i++){
-                    $("#pageDetails h2").append(data.posts.data[i].message);
-                    $("#pageDetails p").html(data.posts.data[i].created_time);
+        //            //$.ajax({
+        //            //    url: '/PostSearch/PageInfo',
+        //            //    type: 'GET',
+        //            //    contentType: "application/json; charset=utf-8",
+        //            //    data: JSON.stringify(json),
+        //            //    dataType: "json",
+        //            //    success: function (data) {
+        //            //        //$.each(data, function(key, value) {
 
-                    }
-                   
+        //            //        //    options += '<option value="' + key + '">' + value + '</option>';                    
 
-                }
+
+        //            //        //});
+        //            //        alert("Hi THere"+data.name);
+
+        //            //        // $("select#pageName").html(options);
+        //            //    }
+        //    //});
+
+        //    alert("HI");              
+            
+
+        //});
+
+       
+            $("#pageName").change(function () {
+
+                alert("HEllo There");
             });
-        }
-        else {
-            alert('please select created date');
-        }
-    }
 
 
+        
 
 
 </script>    

@@ -4,24 +4,224 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Facebook;
+using FacebookApplicationUsingGraphAPI.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace FacebookApplicationUsingGraphAPI.Controllers
 {
     public class PostSearchController : Controller
     {
+        private static string accessToken = "CAACEdEose0cBAKtSnXoOqgy51ZA2WwZCAWmsylR8TTFMknKJZADYUtU2pCC5JoQkmp7YJ3gPQF9EQ7xhl2OfVsz9j4G2ZBEtCAZCTSD44UHkVmIihZBlAwbqsSGQU5ZAUZBi2YG864dk1KxHQLXTgFVa1FwmZBQuhHf1KTlWFzkGHctzhPBNohVeIRELtQxYD5v9CTM4Nw43sY6FkiNqqbCbwvB3gnPD9nYEZD";
+        FacebookClient client = new FacebookClient(accessToken);
         //
         // GET: /PostSearch/
         public ActionResult Index()
         {
             return View();
         }
-
-        public JsonResult PageInfo()
+        
+        public ActionResult PageInfo()
         {
-            var accessToken = "CAACEdEose0cBAHlmZCe7S3v4bTvyk7ghAGmS0hwLSIlAsU2ZBbUgjPzpdhb9qNZBSLqHWFn3HZBlcgYVqeiOpkzfhB5pOj1V7Wdi2ZAjeylWTUyCSUctmqluvCgbaMeR8wxY1Bk9rExbFqXcBkBmQHdgZB8c8t0nOYwDsq62Xh6NwTVnEFmSVUMDOOWnxb8DY5Y3HZBSzoJGmxojwOJpJ2z4Trl7dFVSFcZD";
-            var client = new FacebookClient(accessToken);
-            dynamic me = client.Get("me");
-            return Json(me, JsonRequestBehavior.AllowGet);
+            
+            //var client = new FacebookClient(accessToken);
+            dynamic me = client.Get("me?fields=id,email,first_name,last_name,gender,picture");
+            FacebookUserModel fmodel = Newtonsoft.Json.JsonConvert.DeserializeObject<FacebookUserModel>(me.ToString());
+            return View(fmodel);
+
+
+        }
+
+        public ActionResult FacebookPages()
+        {
+            ManagePageByUser aManagePageByUser = new ManagePageByUser();
+            
+            //var client = new FacebookClient(accessToken);
+
+            dynamic me = client.Get("me/accounts?fields=id,name,category");
+            var data = me["data"].ToString();
+            aManagePageByUser.pageList = JsonConvert.DeserializeObject<List<FacebookUserPage>>(data);
+            return View(aManagePageByUser);
+        }
+
+
+       
+
+
+        //Here SelectedPage ID is Not Passing......
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult FacebookPages(string pageId)
+        {
+            ManagePageByUser aManagePageByUser = new ManagePageByUser();
+
+            //var client = new FacebookClient(accessToken);
+
+            dynamic me = client.Get("me/accounts?fields=id,name,category");
+            var data = me["data"].ToString();
+            dynamic pageName = client.Get(pageId + "?fields=name,likes");
+            string pname = pageName.ToString();
+            JObject rss = JObject.Parse(pname);
+            ViewBag.PageNameById = (string) rss.SelectToken("name");
+            ViewBag.PageLikesById = (int)rss.SelectToken("likes");
+            aManagePageByUser.pageList = JsonConvert.DeserializeObject<List<FacebookUserPage>>(data);
+            try
+            {
+                ViewBag.PostsList = GetPage(pageId).postLists.ToList();
+                return View(aManagePageByUser);
+            }
+            catch (NullReferenceException exception)
+            {
+                ViewBag.PostsList = null;
+                return View(aManagePageByUser);
+            }
+        }
+
+
+        public int GetNoOfLikesInPost(string postId)
+        {
+            //var client = new FacebookClient(accessToken);
+
+            dynamic me = client.Get(postId+"?fields=likes.summary(true)");
+            string msg = me.ToString();
+            JObject rss = JObject.Parse(msg);
+            try
+            {
+                int totalLikes = (int) rss.SelectToken("likes.summary.total_count");
+                return totalLikes;
+            }
+            catch (ArgumentNullException exception)
+            {
+                return 0;
+            }
+        }
+
+        public int GetNoofShares(string postId)
+        {
+            //var client = new FacebookClient(accessToken);
+
+            dynamic me = client.Get(postId + "?fields=shares");
+            string msg = me.ToString();
+            JObject rss = JObject.Parse(msg);
+            try
+            {
+                int totalShare = (int) rss.SelectToken("shares.count");
+                return totalShare;
+            }
+            catch (ArgumentNullException exception)
+            {
+                return 0;
+            }
+        }
+
+        public string GetPostMessage(string postId)
+        {
+           // var client = new FacebookClient(accessToken);
+
+            dynamic me = client.Get(postId + "?fields=message");
+            string msg = me.ToString();
+            JObject rss = JObject.Parse(msg);
+            string message = (string)rss.SelectToken("message");
+            return message;
+        }
+
+        public List<User> GetLikers(string postId)
+        {
+           // var client = new FacebookClient(accessToken);
+            dynamic me = client.Get(postId + "?fields=likes{id,name,picture}");
+            string msg = me.ToString();
+            JObject rss = JObject.Parse(msg);
+            int noOfLikes = GetNoOfLikesInPost(postId);
+            List<User> users = new List<User>();
+            for (int i = 0; i < noOfLikes; i++)
+            {
+                string name = (string) rss.SelectToken("likes.data["+i+"].name");
+                string picture = (string) rss.SelectToken("likes.data["+i+"].picture.data.url");
+                users.Add(
+                        new User()
+                        {
+                            Name = name,
+                            Picture = picture
+                        }
+                    );
+            }
+
+            return users;
+
+
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult GetPagePosts(string pageId)
+        {
+           
+            dynamic me = client.Get(pageId + "?fields=posts{message,likes{id,name,picture}}");
+            string msg = me.ToString();
+            JObject rss = JObject.Parse(msg);
+            List<Post> posted = new List<Post>();
+            List<User> users = new List<User>();
+           
+            //Working Correctly............
+           // string message = (string) rss.SelectToken("posts.data[0].likes.data[0].name");
+            //-------------------------------------------
+            for (int i = 0; i < rss.Count + 1; i++)
+            {
+                string message = (string)rss.SelectToken("posts.data[" + i + "].message");
+                // string picture = (string)rss.SelectToken("posts.data[0].likes.data[0].pic_square");
+                string name = (string)rss.SelectToken("posts.data[" + i + "].likes.data[" + i + "].name");
+
+                posted.Add(
+                        new Post()
+                        {
+                            ContainText = message,
+                            Users = users
+                        }
+                    );
+            }
+
+            
+            
+            
+            return Json(posted, JsonRequestBehavior.AllowGet);
+        }
+
+       public AdminPost GetPage(string pageId)
+       {
+           
+           AdminPost adminPost = new AdminPost();
+           //var client = new FacebookClient(accessToken);
+           string query = pageId+"?fields=posts{message}";
+           dynamic me = client.Get(query);
+           try
+           {
+               var data = me["posts"]["data"].ToString();
+               adminPost.postLists = JsonConvert.DeserializeObject<List<UserPosts>>(data);
+               return adminPost;
+           }
+           catch (KeyNotFoundException exception)
+           {
+               return null;
+           }
+
+       }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GetPostDetails(string postId)
+        {
+            List<User> likersList = GetLikers(postId);
+            int NoOfLikes = GetNoOfLikesInPost(postId);
+            string Message = GetPostMessage(postId);
+            int NoOfShares = GetNoofShares(postId);
+
+
+            ViewBag.Message = Message;
+            ViewBag.NoOfLikes = NoOfLikes;
+            ViewBag.LikersList = likersList;
+            ViewBag.NoOfShares = NoOfShares;
+            return View();
+
         }
 
         

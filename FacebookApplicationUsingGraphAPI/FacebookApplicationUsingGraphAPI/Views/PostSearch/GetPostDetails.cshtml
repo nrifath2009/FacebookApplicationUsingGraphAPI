@@ -1,0 +1,33 @@
+﻿@using System.Web.UI.WebControls
+
+@{
+    ViewBag.Title = "GetPostDetails";
+}
+
+<h2>GetPostDetails</h2><hr>
+
+<div class="jumbotron">
+    @ViewBag.Message
+</div><hr>
+
+<p><span class="label label-success">Likes:</span> @ViewBag.NoOfLikes | <span class="label label-primary">Shares:</span> @ViewBag.NoOfShares</p>
+<div id="user" class="row">
+    
+    @if (ViewBag.NoOfLikes != null)
+    {
+        <p>Who Likes This? </p>
+    }
+    
+    <hr>
+    @foreach (var user in ViewBag.LikersList)
+    {
+        <div class="col-lg-1">
+            <img src="@user.Picture" />
+            <p>@user.Name</p>
+        </div>
+
+
+    }
+
+</div>
+
