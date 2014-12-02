@@ -12,7 +12,8 @@ namespace FacebookApplicationUsingGraphAPI.Controllers
 {
     public class PostSearchController : Controller
     {
-        private static string accessToken = "CAACEdEose0cBADmZAtiyOQQV13Dt1esFlEXcaApBCeSpBMUfdSaZChatBtffH1RoDxbvZBwXOLw7CGnWjLYhN2ANgssZCqD3y1pZAcXrIeDFbncpWrPjE500c8AgxpeOIx7ytnDZCQ97nvdGrQWpzBesMZClGZADXev6sOoOxL3s2qWmHZCv6kvmJCyjtlr5ZACN4EueTJEBkCv6CXQY8vhxE62ZCRZB8FxLxWIZD";
+        facebookDBEntities db = new facebookDBEntities();
+        private static string accessToken = "CAACEdEose0cBAIzWUPOZCbBIZB1xW0NvhMHZBLFA1cKZASTNKWBEngVpSkAiF4ZC1LYKRtFU9z1DN2AA8hFVcLw8mi8H2gZBxfpYZCRd4kzqePJafRYWWeXVOZBBDzjZC5QhXHTsLaA7ZB5b6H3Q3CLCdvmxQZBE9SOYdjmbpr8cdrk0Rzdk4BQSZAZBJTrGq64Fo0rDSHThQ76DlyGPa813LeJ6pQMES3bxegHsZD";
         FacebookClient client = new FacebookClient(accessToken);
         //
         // GET: /PostSearch/
@@ -226,7 +227,28 @@ namespace FacebookApplicationUsingGraphAPI.Controllers
 
         public JsonResult GetData(string postId)
         {
-            return Json(postId, JsonRequestBehavior.AllowGet);
+            int id = postId.IndexOf('_');
+            string postShared = postId.Substring(id + 1);
+            //GetSharerId(postShared,GetNoofShares(postId));
+
+            return Json( GetSharerId(postShared,GetNoofShares(postId)), JsonRequestBehavior.AllowGet);
+        }
+
+        public List<string> GetSharerId(string postShared, int noOfShares)
+        {
+            dynamic me = client.Get(postShared + "/sharedposts");
+            string msg = me.ToString();
+            JObject rss = JObject.Parse(msg);
+            List<string> sharerList = new List<string>();
+           // string message = (string)rss.SelectToken("message");
+           // return message;
+
+            for (int i = 0; i < noOfShares; i++)
+            {
+                string userId = (string) rss.SelectToken("data["+i+"].from.id");
+                sharerList.Add(userId);
+            }
+            return sharerList;
         }
 
         

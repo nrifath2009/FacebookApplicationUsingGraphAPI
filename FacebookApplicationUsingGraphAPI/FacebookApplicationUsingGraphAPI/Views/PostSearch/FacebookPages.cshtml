@@ -80,7 +80,9 @@ else{
     <p>Sorry! There is no post found in this page!</p>
 }
     
-
+<ul id="shareid">
+    
+</ul>
 
 @*<table class="table table-bordered table-striped">
     <tr>
@@ -118,7 +120,11 @@ else{
             data: JSON.stringify(json),
             dataType: "json",
             success: function (data) {
-                alert(data);
+
+                $.each(data, function(key, value) {
+
+                    $("#shareid").append('<li>'+value+'</li>');
+                });
 
             },
 

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="t_post">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sharer_facebook_id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="facebook_post_id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="like_post" Type="bit" />
+    <Property Name="share_post" Type="bit" />
+    <Property Name="database_entry_date" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ModelsStoreContainer">
+    <EntitySet Name="t_post" EntityType="Self.t_post" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

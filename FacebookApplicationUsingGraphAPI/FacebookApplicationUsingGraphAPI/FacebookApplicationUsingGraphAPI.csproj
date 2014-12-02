@@ -50,6 +50,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -169,12 +171,30 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPost.cs" />
+    <Compile Include="Models\FacebookPostModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacebookPostModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FacebookPostModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacebookPostModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FacebookPostModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacebookPostModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\FacebookUserModel.cs" />
     <Compile Include="Models\FacebookUserPage.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostLikes.cs" />
+    <Compile Include="Models\t_post.cs">
+      <DependentUpon>FacebookPostModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -187,6 +207,23 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\FacebookPostModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FacebookPostModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FacebookPostModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FacebookPostModel.edmx</DependentUpon>
+      <LastGenOutput>FacebookPostModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FacebookPostModel.edmx.diagram">
+      <DependentUpon>FacebookPostModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\FacebookPostModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FacebookPostModel.edmx</DependentUpon>
+      <LastGenOutput>FacebookPostModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\facebook.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -240,6 +277,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="facebookDBEntities">
+    <EntitySetMapping Name="t_post">
+      <EntityTypeMapping TypeName="Models.t_post">
+        <MappingFragment StoreEntitySet="t_post">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="sharer_facebook_id" ColumnName="sharer_facebook_id" />
+          <ScalarProperty Name="facebook_post_id" ColumnName="facebook_post_id" />
+          <ScalarProperty Name="like_post" ColumnName="like_post" />
+          <ScalarProperty Name="share_post" ColumnName="share_post" />
+          <ScalarProperty Name="database_entry_date" ColumnName="database_entry_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

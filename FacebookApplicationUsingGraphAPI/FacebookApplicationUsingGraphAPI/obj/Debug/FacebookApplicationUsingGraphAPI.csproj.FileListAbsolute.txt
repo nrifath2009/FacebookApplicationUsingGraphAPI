@@ -4,6 +4,7 @@ D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookAppl
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Antlr3.Runtime.dll
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\EntityFramework.dll
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\EntityFramework.SqlServer.dll
+D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Facebook.dll
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Microsoft.AspNet.Identity.Core.dll
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -27,6 +28,8 @@ D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookAppl
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\System.Web.WebPages.dll
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\System.Web.WebPages.Razor.dll
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\WebGrease.dll
+D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Facebook.xml
+D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Newtonsoft.Json.xml
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\System.Web.Helpers.xml
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\System.Web.Mvc.xml
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\System.Web.Optimization.xml
@@ -34,7 +37,6 @@ D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookAppl
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\System.Web.WebPages.xml
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\System.Web.WebPages.Deployment.xml
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\System.Web.WebPages.Razor.xml
-D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Newtonsoft.Json.xml
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Antlr3.Runtime.pdb
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\EntityFramework.xml
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\EntityFramework.SqlServer.xml
@@ -50,8 +52,6 @@ D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookAppl
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Microsoft.Owin.Security.Google.xml
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Microsoft.Owin.Security.Twitter.xml
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\obj\Debug\FacebookApplicationUsingGraphAPI.csprojResolveAssemblyReference.cache
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\obj\Debug\FacebookApplicationUsingGraphAPI.dll
 D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\obj\Debug\FacebookApplicationUsingGraphAPI.pdb
-D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Facebook.dll
-D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\bin\Facebook.xml
-D:\NerdCastle\Projects\FacebookApp\FacebookApplicationUsingGraphAPI\FacebookApplicationUsingGraphAPI\obj\Debug\FacebookApplicationUsingGraphAPI.csprojResolveAssemblyReference.cache
