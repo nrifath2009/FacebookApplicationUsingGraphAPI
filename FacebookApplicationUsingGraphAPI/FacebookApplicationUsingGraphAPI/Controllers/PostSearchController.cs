@@ -12,7 +12,7 @@ namespace FacebookApplicationUsingGraphAPI.Controllers
 {
     public class PostSearchController : Controller
     {
-        private static string accessToken = "CAACEdEose0cBAMuamfXfkuZBaQ1Qrkdawchn1tZBfsVHKCqfH8cF6wpMtnH5CHIGOVtnWp3Po4EAZAtOdwdtBQe6mpnty10tGFZCu7aeZAevvYhqjClU8vppGSbNN0bx26ltgx5rGSftbZAk5QzUr2ZAupCPrrwO3AdRGb8yphZAawHWRocumhkZBHqkNTwAKZCIP3UBZAHoGZC8imk5ZB8QGhdBED3vkH3T2rEUZD";
+        private static string accessToken = "CAACEdEose0cBADmZAtiyOQQV13Dt1esFlEXcaApBCeSpBMUfdSaZChatBtffH1RoDxbvZBwXOLw7CGnWjLYhN2ANgssZCqD3y1pZAcXrIeDFbncpWrPjE500c8AgxpeOIx7ytnDZCQ97nvdGrQWpzBesMZClGZADXev6sOoOxL3s2qWmHZCv6kvmJCyjtlr5ZACN4EueTJEBkCv6CXQY8vhxE62ZCRZB8FxLxWIZD";
         FacebookClient client = new FacebookClient(accessToken);
         //
         // GET: /PostSearch/
@@ -222,6 +222,11 @@ namespace FacebookApplicationUsingGraphAPI.Controllers
             ViewBag.NoOfShares = NoOfShares;
             return View();
 
+        }
+
+        public JsonResult GetData(string postId)
+        {
+            return Json(postId, JsonRequestBehavior.AllowGet);
         }
 
         
