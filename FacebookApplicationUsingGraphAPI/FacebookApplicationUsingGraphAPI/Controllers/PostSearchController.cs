@@ -12,7 +12,7 @@ namespace FacebookApplicationUsingGraphAPI.Controllers
 {
     public class PostSearchController : Controller
     {
-        private static string accessToken = "CAACEdEose0cBAKtSnXoOqgy51ZA2WwZCAWmsylR8TTFMknKJZADYUtU2pCC5JoQkmp7YJ3gPQF9EQ7xhl2OfVsz9j4G2ZBEtCAZCTSD44UHkVmIihZBlAwbqsSGQU5ZAUZBi2YG864dk1KxHQLXTgFVa1FwmZBQuhHf1KTlWFzkGHctzhPBNohVeIRELtQxYD5v9CTM4Nw43sY6FkiNqqbCbwvB3gnPD9nYEZD";
+        private static string accessToken = "CAACEdEose0cBAMuamfXfkuZBaQ1Qrkdawchn1tZBfsVHKCqfH8cF6wpMtnH5CHIGOVtnWp3Po4EAZAtOdwdtBQe6mpnty10tGFZCu7aeZAevvYhqjClU8vppGSbNN0bx26ltgx5rGSftbZAk5QzUr2ZAupCPrrwO3AdRGb8yphZAawHWRocumhkZBHqkNTwAKZCIP3UBZAHoGZC8imk5ZB8QGhdBED3vkH3T2rEUZD";
         FacebookClient client = new FacebookClient(accessToken);
         //
         // GET: /PostSearch/
