@@ -47,30 +47,39 @@
 {
     <div id="postsList">
         
-        @using (Html.BeginForm("GetPostDetails","PostSearch",FormMethod.Post))
-        {
+        @*@using (Html.BeginForm("GetPostDetails","PostSearch",FormMethod.Post))
+        {*@
+           
              @Html.AntiForgeryToken()
-            foreach (var post in ViewBag.PostsList)
+             
+            @foreach (var post in ViewBag.PostsList)
             {
+                
                 if (post.message != null)
                 {
+                    
                     <div class="jumbotron" id="single_post">
                         <p>
                             @post.message
+
+                            
                         </p>
+                        
+                       
+                        
+                       
+                        <input type="button" id="saveInDatabase" class="btn btn-success" value="Save in Database">
+                        @*<input type="hidden" id= "postId" name="postId" value=@post.id>*@
+                        @Html.ActionLink("View Details", "GetPostDetails",new { postId = post.id },new{@class="btn btn-primary"})
+                       
 
                         
-                        <input type="submit" class="btn btn-primary" value="View Details">
-
-                        <input type="button" id="saveInDatabase" class="btn btn-success" value="Save in Database">
-                        <input type="hidden" id="postId" name="postId" value=@post.id>
-
                     </div>
                 }
 
 
             }
-        }
+        @*}*@
         
     
 
@@ -97,7 +106,13 @@ else{
 </table>*@
 
 
-<script>
+<script>    
+
+    $("#details").click(function() {
+
+        var post = $("#postdetails").val();
+        alert(post);
+    });
 
     $("#saveInDatabase").click(function() {
 
@@ -112,6 +127,7 @@ else{
         //    }
         //});
         var id = $("#postId").val();
+        alert(id);
         var json = { postId: id };
         $.ajax({
             type: "POST",
@@ -135,6 +151,6 @@ else{
 
 
     });
-       
+
 </script>
 

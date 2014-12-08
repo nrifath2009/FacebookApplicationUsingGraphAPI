@@ -13,7 +13,7 @@ namespace FacebookApplicationUsingGraphAPI.Controllers
     public class PostSearchController : Controller
     {
         facebookDBEntities db = new facebookDBEntities();
-        private static string accessToken = "CAACEdEose0cBAIzWUPOZCbBIZB1xW0NvhMHZBLFA1cKZASTNKWBEngVpSkAiF4ZC1LYKRtFU9z1DN2AA8hFVcLw8mi8H2gZBxfpYZCRd4kzqePJafRYWWeXVOZBBDzjZC5QhXHTsLaA7ZB5b6H3Q3CLCdvmxQZBE9SOYdjmbpr8cdrk0Rzdk4BQSZAZBJTrGq64Fo0rDSHThQ76DlyGPa813LeJ6pQMES3bxegHsZD";
+        private static string accessToken = "CAACEdEose0cBAMk2uiYhfrXf5ozVP63Ndb6vhFj9BlZCGgYUNTSyoRJNf1zz0JP0cX32ZBRYL4gK8J4EPeYCtMx1S06WVxXo9lrtpKb3Eu8GxUxeYhIUyHWpeOpo8lafvzVTIuC9MuRKz75U1PxkJe23ZCCrveVD1L87cWWikicOlFKdXPUPIZCWDPwoIzaOKNd8IwknkRl3YIV9YjZAyUx97ZA0CP77QZD";
         FacebookClient client = new FacebookClient(accessToken);
         //
         // GET: /PostSearch/
@@ -137,6 +137,7 @@ namespace FacebookApplicationUsingGraphAPI.Controllers
             for (int i = 0; i < noOfLikes; i++)
             {
                 string name = (string) rss.SelectToken("likes.data["+i+"].name");
+                //string id = (string)rss.SelectToken("likes.data[" + i + "].id");
                 string picture = (string) rss.SelectToken("likes.data["+i+"].picture.data.url");
                 users.Add(
                         new User()
@@ -207,9 +208,9 @@ namespace FacebookApplicationUsingGraphAPI.Controllers
 
        }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult GetPostDetails(string postId)
+       // [HttpPost]
+        //[ValidateAntiForgeryToken]
+       public ActionResult GetPostDetails(string postId)
         {
             List<User> likersList = GetLikers(postId);
             int NoOfLikes = GetNoOfLikesInPost(postId);
@@ -240,8 +241,7 @@ namespace FacebookApplicationUsingGraphAPI.Controllers
             string msg = me.ToString();
             JObject rss = JObject.Parse(msg);
             List<string> sharerList = new List<string>();
-           // string message = (string)rss.SelectToken("message");
-           // return message;
+           
 
             for (int i = 0; i < noOfShares; i++)
             {
@@ -250,6 +250,11 @@ namespace FacebookApplicationUsingGraphAPI.Controllers
             }
             return sharerList;
         }
+
+        //public bool IsLikeThisPost()
+        //{
+            
+        //}
 
         
 	}
