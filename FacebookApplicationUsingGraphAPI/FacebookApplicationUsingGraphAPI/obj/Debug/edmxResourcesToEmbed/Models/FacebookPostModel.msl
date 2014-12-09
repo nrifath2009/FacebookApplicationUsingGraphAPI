@@ -9,7 +9,6 @@
           <ScalarProperty Name="facebook_post_id" ColumnName="facebook_post_id" />
           <ScalarProperty Name="like_post" ColumnName="like_post" />
           <ScalarProperty Name="share_post" ColumnName="share_post" />
-          <ScalarProperty Name="database_entry_date" ColumnName="database_entry_date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

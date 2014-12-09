@@ -19,6 +19,5 @@ namespace FacebookApplicationUsingGraphAPI.Models
         public string facebook_post_id { get; set; }
         public Nullable<bool> like_post { get; set; }
         public Nullable<bool> share_post { get; set; }
-        public byte[] database_entry_date { get; set; }
     }
 }

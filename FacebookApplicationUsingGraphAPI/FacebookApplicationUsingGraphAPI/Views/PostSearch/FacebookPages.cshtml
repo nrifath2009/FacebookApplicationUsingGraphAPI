@@ -71,6 +71,7 @@
                         <input type="button" id="saveInDatabase" class="btn btn-success" value="Save in Database">
                         @*<input type="hidden" id= "postId" name="postId" value=@post.id>*@
                         @Html.ActionLink("View Details", "GetPostDetails",new { postId = post.id },new{@class="btn btn-primary"})
+                        @Html.ActionLink("Save", "SaveInDatabase", new { postId = post.id }, new { @class = "btn btn-danger" })
                        
 
                         

@@ -192,6 +192,7 @@
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostLikes.cs" />
+    <Compile Include="Models\Share.cs" />
     <Compile Include="Models\t_post.cs">
       <DependentUpon>FacebookPostModel.tt</DependentUpon>
     </Compile>
